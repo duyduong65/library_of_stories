@@ -46,6 +46,23 @@ class library_of_stories
         $stmt->execute();
     }
 
+    public function findStoryById($id)
+    {
+        $sql = "SELECT name , author,category,image  FROM stories WHERE id=:id";
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $story = $stmt->fetch();
+
+        $name = $story['name'];
+        $author = $story['author'];
+        $category = $story['category'];
+        $image = $story['image'];
+
+        $story = new Stories($name, $author, $category, $image);
+        return $story;
+    }
+
 }
 
 $manager = new library_of_stories();

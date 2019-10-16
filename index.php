@@ -63,7 +63,7 @@
                 <td style="width: 20%"><?php echo $story->getCategory() ?></td>
                 <td style="width: 20%"><img src="images/<?php echo $story->getImage() ?>" width="100px"></td>
                 <td style="width: 20%"><a href="CRUD/deleteStory.php?id=<?php echo $story->getId() ?>">Delete</a></td>
-                <td style="width: 20%"><a href="CRUD/findStoryById.php?id=<?php echo $story->getId() ?>">Delete</a></td>
+                <td style="width: 20%"><a href="CRUD/findStoryById.php?id=<?php echo $story->getId() ?>">Edit</a></td>
             </tr>
         <?php endforeach; ?>
     </table>
