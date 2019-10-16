@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="" method="post">
+<form action="CRUD/addStory.php" method="post" enctype="multipart/form-data" >
     <table>
         <tr>
             <td>Name:</td>
@@ -31,7 +31,7 @@
         <tr>
             <td>Picture:</td>
             <td>
-                <input type="file">
+                <input name="image" type="file">
             </td>
         </tr>
         <tr>
@@ -42,29 +42,30 @@
     </table>
     <table>
         <tr>
-            <td style="width: 300px">ID</td>
+            <td style="width: 20%">ID</td>
             <td style="width: 20%">Name</td>
             <td style="width: 20%">Author</td>
             <td style="width: 20%">Category</td>
             <td style="width: 20%">Picture</td>
         </tr>
-    </table>
-    <table>
         <?php
         include_once "Class/DBConnect.php";
         include_once "Class/Stories.php";
         include_once "Class/library_of_stories.php";
 
         $stories = $manager->getAll();
+
         foreach ($stories as $key => $story): ?>
+
             <tr>
-                <td><?php echo ++$key ?></td>
-                <td><?php $story->getName() ?></td>
-                <td><?php $story->getAuthor() ?></td>
-                <td><?php $story->getCategory() ?></td>
-                <td><?php $story->getImage() ?></td>
-                <td><a href="CRUD/delete?id=<?php echo $story->getId() ?>"></a></td>
-                <td></td>
+                <td style="width: 20%"><?php echo ++$key ?></td>
+                <td style="width: 20%"><?php echo $story->getName() ?></td>
+                <td style="width: 20%"><?php echo $story->getAuthor() ?></td>
+                <td style="width: 20%"><?php echo $story->getCategory() ?></td>
+                <td style="width: 20%"><img src="images/<?php echo $story->getImage() ?>" width="100px"></td>
+                <td style="width: 20%"><a href="CRUD/delete?id=<?php echo $story->getId() ?>">Delete</a></td>
+                <td style="width: 20%"><a href="CRUD/findStoryById.php?id=<?php echo $story->getId() ?>">Delete</a></td>
+
             </tr>
         <?php endforeach; ?>
     </table>
