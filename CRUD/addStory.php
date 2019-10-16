@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $category = $_POST['category'];
     }
     $image = $_FILES['image']['name'];
-    $target = "../images/".date("Y_m_d_h_i_s_a").basename($image);
+    $target = "../images/" . date("Y_m_d_h_i_s_a") . basename($image);
     $story = new Stories($name, $author, $category, $target);
     $manager = new library_of_stories();
     $manager->addStory($story);

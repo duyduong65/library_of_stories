@@ -20,7 +20,7 @@ class library_of_stories
         $stories = [];
 
         foreach ($stmt as $value) {
-            $story = new Stories($value['name'], $value['author'], $value['category'],$value['image']);
+            $story = new Stories($value['name'], $value['author'], $value['category'], $value['image']);
             $story->setId($value['id']);
             array_push($stories, $story);
         }
@@ -31,10 +31,18 @@ class library_of_stories
     {
         $sql = "INSERT INTO stories(name,author,category,image) VALUES (:name,:author,:category,:image)";
         $stmt = $this->connect->prepare($sql);
-        $stmt->bindParam(":name",$story->getName());
-        $stmt->bindParam(":author",$story->getAuthor());
-        $stmt->bindParam(":category",$story->getCategory());
-        $stmt->bindParam(":image",$story->getImage());
+        $stmt->bindParam(":name", $story->getName());
+        $stmt->bindParam(":author", $story->getAuthor());
+        $stmt->bindParam(":category", $story->getCategory());
+        $stmt->bindParam(":image", $story->getImage());
+        $stmt->execute();
+    }
+
+    public function delete($id)
+    {
+        $sql = "DELETE FROM stories WHERE id=:id";
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":id", $id);
         $stmt->execute();
     }
 

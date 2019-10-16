@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="CRUD/addStory.php" method="post" enctype="multipart/form-data" >
+<form action="CRUD/addStory.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Name:</td>
@@ -56,16 +56,14 @@
         $stories = $manager->getAll();
 
         foreach ($stories as $key => $story): ?>
-
             <tr>
                 <td style="width: 20%"><?php echo ++$key ?></td>
                 <td style="width: 20%"><?php echo $story->getName() ?></td>
                 <td style="width: 20%"><?php echo $story->getAuthor() ?></td>
                 <td style="width: 20%"><?php echo $story->getCategory() ?></td>
                 <td style="width: 20%"><img src="images/<?php echo $story->getImage() ?>" width="100px"></td>
-                <td style="width: 20%"><a href="CRUD/delete?id=<?php echo $story->getId() ?>">Delete</a></td>
+                <td style="width: 20%"><a href="CRUD/deleteStory.php?id=<?php echo $story->getId() ?>">Delete</a></td>
                 <td style="width: 20%"><a href="CRUD/findStoryById.php?id=<?php echo $story->getId() ?>">Delete</a></td>
-
             </tr>
         <?php endforeach; ?>
     </table>
