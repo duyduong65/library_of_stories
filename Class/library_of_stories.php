@@ -48,7 +48,7 @@ class library_of_stories
 
     public function findStoryById($id)
     {
-        $sql = "SELECT name , author,category,image  FROM stories WHERE id=:id";
+        $sql = "SELECT name , author, category, image  FROM stories WHERE id=:id";
         $stmt = $this->connect->prepare($sql);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
