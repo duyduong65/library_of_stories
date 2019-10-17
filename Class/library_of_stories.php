@@ -12,6 +12,11 @@ class library_of_stories
         $this->connect = $db->connect();
     }
 
+    public function getConnect()
+    {
+        return $this->connect;
+    }
+
     public function getAll()
     {
         $sql = "SELECT * FROM stories";
@@ -63,6 +68,17 @@ class library_of_stories
         return $story;
     }
 
+    public function update($id, $story)
+    {
+        $sql = "UPDATE stories SET name=:name,author = :author,category = :category,image = :image WHERE id=:id";
+        $stmt = $this->connect->prepare($sql);
+        $stmt->bindParam(":name", $story->getName());
+        $stmt->bindParam(":author", $story->getAuthor());
+        $stmt->bindParam(":category", $story->getCategory());
+        $stmt->bindParam(":image", $story->getImage());
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+    }
 }
 
 $manager = new library_of_stories();
