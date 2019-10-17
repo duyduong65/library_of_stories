@@ -9,10 +9,10 @@ $id = $_POST['id'];
 
 //var_dump($_FILES['image']['error']);
 //die();
-if ($_FILES['image']['error'] == 4) {
+$story = $manager->findStoryById($id);
+$image = $story->getImage();
 
-    $story = $manager->findStoryById($id);
-    $image = $story->getImage();
+if ($_FILES['image']['error'] == 4) {
 
     $category = $_POST['category'];
     $author = $_POST['author'];
@@ -23,12 +23,8 @@ if ($_FILES['image']['error'] == 4) {
 
 }
 if ($_FILES['image']['error'] == 0) {
-    $story = $manager->findStoryById($id);
-    $imageName = $story->getImage();
-    unlink("../images/" . $imageName);
-    $story = $manager->findStoryById($id);
-    $image = $story->getImage();
 
+    unlink("../images/" . $image);
 
     $image = $_FILES['image']['name'];
     $target = "../images/" . date("Y_m_d_h_i_s_a") . basename($image);
